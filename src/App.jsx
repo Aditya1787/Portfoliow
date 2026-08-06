@@ -12,114 +12,171 @@ import { Link } from 'react-scroll';
 // New Animation Dependencies
 import { Particles, initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import profilePic from './assets/profile pic.png';
+import profilePic from './assets/profile_pic.jpeg';
+import paperCraftAvatar from './assets/paper_craft_avatar.png';
 
 // --- DATA ---
 const NAV_LINKS = ['Home', 'About', 'Skills', 'Projects', 'Achievements', 'Education', 'Training', 'Certificates', 'Contact'];
 
 const SKILLS = [
+  // Languages
+  { name: 'C', category: 'languages', color: '#00599C' },
   { name: 'C++', category: 'languages', color: '#00599C' },
-  { name: 'JavaScript', category: 'languages', color: '#F7DF1E' },
+  { name: 'JavaScript (ES6+)', category: 'languages', color: '#F7DF1E' },
+  { name: 'TypeScript', category: 'languages', color: '#3178C6' },
+  { name: 'Python', category: 'languages', color: '#3776AB' },
   { name: 'Java', category: 'languages', color: '#ED8B00' },
-  { name: 'PHP', category: 'languages', color: '#777BB4' },
-  { name: 'Dart', category: 'languages', color: '#0175C2' },
+  // Web & Frontend
   { name: 'HTML5', category: 'web', color: '#E34F26' },
   { name: 'CSS3', category: 'web', color: '#1572B6' },
   { name: 'React.js', category: 'web', color: '#61DAFB' },
+  { name: 'Next.js', category: 'web', color: '#000000' },
+  { name: 'Tailwind CSS', category: 'web', color: '#06B6D4' },
+  // Backend & APIs
   { name: 'Node.js', category: 'web', color: '#339933' },
   { name: 'Express.js', category: 'web', color: '#000000' },
-  { name: 'Tailwind CSS', category: 'web', color: '#06B6D4' },
-  { name: 'Git', category: 'tools', color: '#F05032' },
-  { name: 'Redux', category: 'tools', color: '#764ABC' },
-  { name: 'TypeScript', category: 'tools', color: '#3178C6' },
-  { name: 'Postman', category: 'tools', color: '#FF6C37' },
-  { name: 'Firebase', category: 'tools', color: '#FFCA28' },
-  { name: 'Supabase', category: 'tools', color: '#3ECF8E' },
+  { name: 'RESTful APIs', category: 'web', color: '#2563EB' },
+  { name: 'JWT Auth', category: 'web', color: '#D63AF9' },
+  // Databases
   { name: 'MySQL', category: 'db', color: '#4479A1' },
-  { name: 'MongoDB', category: 'db', color: '#47A248' },
   { name: 'PostgreSQL', category: 'db', color: '#4169E1' },
+  { name: 'MongoDB', category: 'db', color: '#47A248' },
+  { name: 'Firebase', category: 'db', color: '#FFCA28' },
+  { name: 'Supabase', category: 'db', color: '#3ECF8E' },
+  // Tools & Platforms
+  { name: 'Git', category: 'tools', color: '#F05032' },
+  { name: 'GitHub', category: 'tools', color: '#181717' },
+  { name: 'VS Code', category: 'tools', color: '#007ACC' },
+  { name: 'Android Studio', category: 'tools', color: '#3DDC84' },
+  { name: 'Postman', category: 'tools', color: '#FF6C37' },
+  { name: 'Cloudinary', category: 'tools', color: '#3448C5' },
+  // Core Concepts
+  { name: 'DSA', category: 'core', color: '#2563EB' },
+  { name: 'OOP', category: 'core', color: '#16A34A' },
+  { name: 'Computer Networks', category: 'core', color: '#0284C7' },
+  { name: 'Operating Systems', category: 'core', color: '#9333EA' },
 ];
 
 const EXPERTISE_LEVELS = [
-  { name: 'React.js & Web Frontend', level: 90 },
-  { name: 'Flutter App Development', level: 85 },
-  { name: 'Node.js / Express Backend', level: 80 },
-  { name: 'Data Structures & Algorithms', level: 88 },
-  { name: 'Database Management (SQL/NoSQL)', level: 82 }
+  { name: 'React.js & Next.js Frontend', level: 92 },
+  { name: 'Node.js & Express API Architectures', level: 88 },
+  { name: 'Flutter & Mobile App Development', level: 88 },
+  { name: 'Multi-Agent AI Engineering (LangGraph & Gemini)', level: 85 },
+  { name: 'Data Structures & Algorithmic Optimization', level: 90 },
+  { name: 'SQL & NoSQL Database Design (MongoDB/PostgreSQL)', level: 86 }
 ];
 
 const PROJECTS = [
   {
     id: 1,
-    title: 'Jibble – College Circle Social Media App',
-    duration: 'Jan\' 26 - Feb\' 26',
-    description: 'Developed a secure, college-exclusive social media platform for campus networking and collaboration. Integrated Cloudinary CDN for optimized image and media storage. Implemented user authentication, role-based access, and secure database management.',
-    tech: ['Flutter', 'Dart', 'Supabase (PostgreSQL, Realtime, Auth)', 'Cloudinary'],
-    link: '#',
-    image: '/jibble_app_1773991049174.png',
-    icon: <Smartphone />
+    title: 'SplitLedge – Full-Stack Group Expense Platform',
+    subtitle: 'O(N log N) Greedy Debt Simplification Algorithm with Min/Max Heaps',
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Recharts'],
+    features: [
+      'Engineered a production-grade shared-expense ledger using an O(N log N) greedy debt-simplification algorithm with Min/Max heaps to minimize peer-to-peer settlement transactions.',
+      'Built a CSV data-import engine with a 20+ rule anomaly-detection pipeline (duplicate entries, currency mismatches, temporal exclusions) to ensure data integrity.',
+      'Designed a responsive glassmorphic & neomorphic UI with real-time credit/debt visualizations using Recharts, improving financial transparency.'
+    ],
+    demoLink: 'https://github.com/Aditya1787',
+    githubLink: 'https://github.com/Aditya1787',
+    icon: <Layers />,
+    badge: 'Min/Max Heap Algorithm'
   },
   {
     id: 2,
-    title: 'SmartFolio – Portfolio & Wealth Dashboard',
-    duration: 'Nov\' 25 - Dec\' 25',
-    description: 'Developed a centralized financial dashboard that consolidates stocks, mutual funds, and cash holdings into a single, intuitive interface for better financial decision-making. Built a fast, component-based frontend.',
-    tech: ['React.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB'],
-    link: 'http://smartfolio-nine.vercel.app/',
-    image: '/smartfolio_dashboard_1773991112527.png',
-    icon: <Layout />
+    title: 'Intvester – AI Equity Research Terminal',
+    subtitle: 'Orchestrated 6 Specialized AI Agents on LangGraph for Financial Intelligence',
+    tech: ['Next.js', 'React (TypeScript)', 'LangChain', 'LangGraph', 'Gemini & Groq APIs', 'Recharts'],
+    features: [
+      'Architected a multi-agent AI research pipeline on LangGraph, orchestrating six specialized agents to generate automated, data-backed investment verdicts.',
+      'Developed a technical-indicator engine computing RSI, MACD, EMA crossovers, and Bollinger Bands, plus a multi-ticker stock comparison hub.',
+      'Enabled multi-page PDF report exports, democratizing institutional-grade financial intelligence for retail investors.'
+    ],
+    demoLink: 'https://github.com/Aditya1787',
+    githubLink: 'https://github.com/Aditya1787',
+    icon: <Cpu />,
+    badge: 'LangGraph & 6 AI Agents'
   },
   {
     id: 3,
-    title: 'Code2 Placement',
-    duration: '2025',
-    description: 'Developed a comprehensive placement preparation website designed to help students and developers master coding skills and engineering interviews.',
-    tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js'],
-    link: 'https://code2-placement-uvrp.vercel.app/',
-    image: '/code2_placement_1773991129841.png',
-    icon: <Terminal />
+    title: 'DevTrackr – AI Telemetry Analytics Console',
+    subtitle: 'GitHub Telemetry Aggregator & Generative AI Diagnostics Engine',
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'GitHub API (Octokit)', 'Gemini API', 'Node-Cron'],
+    features: [
+      'Built a full-stack analytics console aggregating GitHub telemetry into a weighted Developer Productivity Score (0-100) to surface delivery bottlenecks.',
+      'Integrated Google Gemini API for generative AI diagnostics, sprint-pacing analysis, and workload reports; optimized MongoDB writes via bulkWrite, cutting write latency by 90%+.',
+      'Automated data synchronization and inactivity detection using Node-Cron job scheduling, supporting fair workload distribution.'
+    ],
+    demoLink: 'https://github.com/Aditya1787',
+    githubLink: 'https://github.com/Aditya1787',
+    icon: <Terminal />,
+    badge: 'Gemini AI & bulkWrite 90%+'
   },
   {
     id: 4,
-    title: 'Task Manager App',
-    duration: '2025',
-    description: 'A mobile application engineered for efficient task tracking, scheduling, and placement preparation. Helps students organize their preparation milestones flawlessly.',
-    tech: ['Flutter', 'Dart', 'State Management'],
-    link: '#',
-    image: '/task_manager_flutter_1773991200494.png',
-    icon: <Smartphone />
+    title: 'Jibble – College Circle Social Media App',
+    subtitle: 'Secure College-Exclusive Campus Networking Platform',
+    tech: ['Flutter', 'Dart', 'Supabase (PostgreSQL, Realtime, Auth)', 'Cloudinary CDN'],
+    features: [
+      'Developed a secure, college-exclusive social media platform for campus networking and collaboration.',
+      'Integrated Cloudinary CDN for optimized image and media storage.',
+      'Implemented user authentication, role-based access control, and real-time database management.'
+    ],
+    demoLink: 'https://github.com/Aditya1787',
+    githubLink: 'https://github.com/Aditya1787',
+    icon: <Smartphone />,
+    badge: 'Supabase Realtime & Auth'
   },
   {
     id: 5,
-    title: 'Portfolio Website',
-    duration: 'Oct\' 25 - Nov\' 25',
-    description: 'Created a personal portfolio website using React.js to showcase projects, technical skills, and academic details. Implemented responsive design and 3D interactions.',
-    tech: ['React JS', 'Tailwind CSS', 'Framer Motion', 'Three.js'],
-    link: '#',
-    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=800&auto=format&fit=crop',
-    icon: <Code2 />
+    title: 'SmartFolio – Wealth & Portfolio Dashboard',
+    subtitle: 'Centralized Stock, Mutual Fund & Cash Management Hub',
+    tech: ['React.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB'],
+    features: [
+      'Developed a centralized financial dashboard consolidating stocks, mutual funds, and cash holdings into a single intuitive interface.',
+      'Built a fast, component-based frontend with dynamic portfolio asset distribution charts.'
+    ],
+    demoLink: 'http://smartfolio-nine.vercel.app/',
+    githubLink: 'https://github.com/Aditya1787',
+    icon: <Layout />,
+    badge: 'Live on Vercel'
+  },
+  {
+    id: 6,
+    title: 'Code2 Placement – Interview & Placement Mastery Platform',
+    subtitle: 'Comprehensive Placement Preparation & Interview Portal',
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'JWT'],
+    features: [
+      'Engineered a comprehensive placement preparation platform helping engineering students master coding skills and technical interviews.',
+      'Implemented curated coding problem roadmaps, user authentication, progress tracking, and interactive practice modules.',
+      'Built a fast component-based React interface connected to Node.js/Express backend APIs.'
+    ],
+    demoLink: 'https://code2-placement-uvrp.vercel.app/',
+    githubLink: 'https://github.com/Aditya1787',
+    icon: <Code2 />,
+    badge: 'Live Platform'
   }
 ];
 
 const ACHIEVEMENTS = [
-  { label: 'DSA Problems Solved', value: 600, suffix: '+', icon: <Target size={32} />, desc: 'Across LeetCode, GFG & CodeStudio', color: '#6366f1' },
-  { label: 'LeetCode Rating', value: 1481, suffix: '', icon: <Star size={32} />, desc: 'Active competitive programmer', color: '#f59e0b' },
-  { label: 'Projects Built', value: 5, suffix: '+', icon: <Layers size={32} />, desc: 'Full-stack web & mobile apps', color: '#10b981' },
-  { label: 'Certifications', value: 2, suffix: '', icon: <Award size={32} />, desc: 'Industry-recognized credentials', color: '#a855f7' },
+  { label: 'DSA Problems Solved', value: 600, suffix: '+', icon: <Target size={32} />, desc: 'Across LeetCode & GeeksforGeeks', color: '#2563eb' },
+  { label: 'LeetCode Rating', value: 1481, suffix: '', icon: <Star size={32} />, desc: 'Consistent competitive programmer', color: '#eab308' },
+  { label: 'SAP Hackfest Qualifier', value: 1, suffix: 'st', icon: <Trophy size={32} />, desc: 'State-Level Round for software innovation', color: '#16a34a' },
+  { label: 'Production Apps', value: 5, suffix: '+', icon: <Layers size={32} />, desc: 'AI Terminals, FinTech & Telemetry Consoles', color: '#06b6d4' },
 ];
 
 const PLATFORMS = [
   {
     name: 'LeetCode',
     handle: '@adityakm8787',
-    color: '#f59e0b',
-    bg: 'rgba(245,158,11,0.08)',
-    border: 'rgba(245,158,11,0.25)',
+    color: '#eab308',
+    bg: 'rgba(234,179,8,0.08)',
+    border: 'rgba(234,179,8,0.25)',
     emoji: '🟡',
     stats: [
       { label: 'Problems Solved', value: '350+' },
       { label: 'Max Rating', value: '1481' },
-      { label: 'Contest Rating', value: 'Knight' },
+      { label: 'Contest Rank', value: 'Knight' },
     ],
     link: 'https://leetcode.com/u/adityakm8787/'
   },
@@ -131,7 +188,7 @@ const PLATFORMS = [
     border: 'rgba(22,163,74,0.25)',
     emoji: '🟢',
     stats: [
-      { label: 'Problems Solved', value: '200+' },
+      { label: 'Problems Solved', value: '250+' },
       { label: 'Score', value: '900+' },
       { label: 'Institute Rank', value: 'Top 10%' },
     ],
@@ -140,113 +197,144 @@ const PLATFORMS = [
 ];
 
 const TICKER_ITEMS = [
-  '🏆 LeetCode Rating: 1481',
-  '⚡ 600+ DSA Problems Solved',
-  '🚀 5+ Full-Stack Projects Shipped',
-  '🥇 Top 10% on GeeksForGeeks',
-  '📱 2 Production-Grade Mobile Apps',
-  '🎓 2 Industry Certifications',
-  '💡 MERN + Flutter Developer',
-  '🔥 Consistent Coder – Daily Streak',
+  '🏆 LeetCode Rating: 1481 (Knight)',
+  '⚡ 600+ DSA Problems Solved across LeetCode & GFG',
+  '🥇 Selected for SAP Hackfest State-Level Round',
+  '🚀 5+ Full-Stack Production Projects Built',
+  '🤖 Multi-Agent AI Architecture with LangGraph & Gemini',
+  '🎓 Oracle OCI 2025 AI Foundations Certified',
+  '📱 Production-Grade Web & Flutter Developer',
 ];
 
 const CERTS = [
   {
     id: 1,
-    title: 'Java Programming',
-    issuer: 'iamneo / LPU',
-    period: 'Jan 2025 – May 2025',
-    hours: '72 Hours',
-    color: '#ec4899',
-    image: '/certificates/Java Programming .png',
-    tag: 'Programming'
+    title: 'OCI 2025 Certified AI Foundations Associate',
+    issuer: 'Oracle University',
+    period: '2025',
+    hours: 'Oracle Certified Associate Credentials in Artificial Intelligence & Generative Models',
+    color: '#ea580c',
+    tag: 'AI & Cloud',
+    link: 'https://education.oracle.com/'
   },
   {
     id: 2,
-    title: 'C++ Programming',
-    issuer: 'neo colab / LPU',
-    period: 'Aug 2024 – Dec 2024',
-    hours: '72 Hours',
-    color: '#f59e0b',
-    image: '/certificates/C++ programming.png',
-    tag: 'Core CS'
+    title: 'Oracle Data Platform 2025 Certified Foundations Associate',
+    issuer: 'Oracle University',
+    period: '2025',
+    hours: 'Oracle Certified Associate Credentials in Enterprise Data Management & Analytics',
+    color: '#2563eb',
+    tag: 'Data Engineering',
+    link: 'https://education.oracle.com/'
   },
   {
     id: 3,
-    title: 'C Programming',
-    issuer: 'neo colab / LPU',
-    period: 'Jan 2024 – May 2024',
-    hours: '72 Hours',
+    title: 'Cloud Computing',
+    issuer: 'NPTEL',
+    period: '2024',
+    hours: 'National Programme on Technology Enhanced Learning Verified Credential',
     color: '#06b6d4',
-    image: '/certificates/C programming.png',
-    tag: 'Programming'
+    tag: 'Cloud Systems',
+    link: 'https://nptel.ac.in/'
   },
   {
     id: 4,
     title: 'Data Structures & Algorithms',
-    issuer: 'neo colab / LPU',
-    period: 'Aug 2024 – Dec 2024',
-    hours: '72 Hours',
-    color: '#6366f1',
-    image: '/certificates/Data structure and algorithm.png',
-    tag: 'DSA'
+    issuer: 'NPTEL / Neo Colab',
+    period: '2024',
+    hours: 'Core Computer Science Algorithmic Efficiency & Data Structures Mastery',
+    color: '#16a34a',
+    tag: 'Algorithms & DSA',
+    link: '#'
   },
   {
     id: 5,
-    title: 'Full Stack Development',
-    issuer: 'LPU Centre for Professional Enhancement',
-    period: 'Jun 2025 – Jul 2025',
-    hours: 'Grade B',
-    color: '#f97316',
-    image: '/certificates/mern stack.png',
-    tag: 'Full Stack'
+    title: 'Master Generative AI & Generative AI Tools',
+    issuer: 'Udemy',
+    period: '2025',
+    hours: 'Generative AI Engineering, ChatGPT, Prompt Design & LLM Tool Integrations',
+    color: '#9333ea',
+    tag: 'Generative AI',
+    link: 'https://udemy.com'
   },
   {
     id: 6,
-    title: 'App Development',
-    issuer: 'IBM / Coursera',
-    period: 'Mar 2026',
-    hours: 'Verified Certificate',
-    color: '#1d4ed8',
-    image: '/certificates/App Development.png',
-    tag: 'Mobile Dev'
-  },
+    title: 'Full Stack Development In React and Node',
+    issuer: 'Meta',
+    period: '2025',
+    hours: 'Full Stack Web Development, REST APIs, Database Design & Cloud Deployment',
+    color: '#ea33e1ff',
+    tag: 'Full Stack',
+    link: 'https://udemy.com'
+  }
 ];
 
 const EDUCATION = [
   {
     school: 'Lovely Professional University',
-    location: 'Phagwara, Punjab',
-    degree: 'Bachelor of Technology - Computer Science and Engineering',
-    score: 'CGPA: 6.51',
-    period: 'Aug\' 23 - Present'
+    location: 'Phagwara, Punjab, India',
+    degree: 'Bachelor of Technology (B.Tech) - Computer Science & Engineering',
+    score: 'Grade: Pursuing B.Tech CSE',
+    period: 'Aug 2023 - Present'
   },
   {
     school: 'S J Vidya Niketan Inter College',
-    location: 'Kanpur, Uttar Pradesh',
-    degree: 'Intermediate',
+    location: 'Kanpur, Uttar Pradesh, India',
+    degree: 'Intermediate (Class XII)',
     score: 'Percentage: 78%',
-    period: 'Apr\' 21 - Feb\' 22'
+    period: 'Apr 2021 - Feb 2022'
   },
   {
     school: 'S J Vidya Niketan Inter College',
-    location: 'Kanpur, Uttar Pradesh',
-    degree: 'Matriculation',
+    location: 'Kanpur, Uttar Pradesh, India',
+    degree: 'Highschool / Matriculation (Class X)',
     score: 'Percentage: 87%',
-    period: 'Apr\' 19 - Feb\' 20'
+    period: 'Apr 2019 - Feb 2020'
   }
 ];
 
 const TRAINING = [
   {
-    title: 'Full Stack Development (React & Node)',
-    period: 'May\' 25 - Jul\' 25',
+    title: 'Full Stack Development Trainee (React.js & Node.js)',
+    period: 'May 2025 - July 2025',
     details: [
-      'Worked on Building full stack Web applications using React JS for frontend and Node JS with Express JS for backend, following a client-server architecture.',
-      'Developed and integrated RESTful APIs to manage request-response cycles and seamless data exchange between frontend and backend.'
+      'Completed hands-on training in end-to-end web application development: HTML5, CSS3, JavaScript (ES6+), React.js, Node.js, Express.js, RESTful APIs, MySQL, MongoDB, Git/GitHub, and responsive design.',
+      'Built reusable React components and scalable Express.js backends with CRUD operations, API integration, and database connectivity, following industry-standard software development practices.'
     ]
   }
 ];
+
+// --- OFFICIAL SKILL LOGOS MAP ---
+const SKILL_LOGOS = {
+  'C': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
+  'C++': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
+  'JavaScript (ES6+)': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+  'TypeScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+  'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  'Java': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
+  'HTML5': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  'CSS3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+  'React.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+  'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+  'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+  'Express.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+  'RESTful APIs': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
+  'JWT Auth': 'https://jwt.io/img/pic_logo.svg',
+  'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+  'PostgreSQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+  'MongoDB': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
+  'Firebase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
+  'Supabase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg',
+  'Flutter': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
+  'Dart': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg',
+  'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+  'GitHub': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+  'VS Code': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
+  'Android Studio': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg',
+  'Postman': 'https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg',
+  'Cloudinary': 'https://res.cloudinary.com/cloudinary/image/upload/new_cloudinary_logo_square.png'
+};
 
 const CERTIFICATES = [
   { title: 'Full Stack Web Development', period: 'May\' 25 - Jul\' 25' },
@@ -255,24 +343,25 @@ const CERTIFICATES = [
 
 // --- SKILL ICON MAP ---
 const SKILL_ICONS = {
-  'C++': '⚡', 'JavaScript': '🟨', 'Java': '☕', 'PHP': '🐘', 'Dart': '🎯',
-  'HTML5': '🔷', 'CSS3': '🎨', 'React.js': '⚛️', 'Node.js': '🟩', 'Express.js': '🚀',
-  'Tailwind CSS': '💨', 'Git': '🔀', 'Redux': '🔮', 'TypeScript': '📘', 'Postman': '📮',
-  'Firebase': '🔥', 'Supabase': '🟢', 'MySQL': '🗄️', 'MongoDB': '🍃', 'PostgreSQL': '🐘',
-  'Flutter': '💙'
+  'C': '💻', 'C++': '⚡', 'JavaScript (ES6+)': '🟨', 'TypeScript': '📘', 'Python': '🐍', 'Java': '☕',
+  'HTML5': '🔷', 'CSS3': '🎨', 'React.js': '⚛️', 'Next.js': '▲', 'Tailwind CSS': '💨',
+  'Node.js': '🟩', 'Express.js': '🚀', 'RESTful APIs': '🔌', 'JWT Auth': '🔑',
+  'MySQL': '🗄️', 'PostgreSQL': '🐘', 'MongoDB': '🍃', 'Firebase': '🔥', 'Supabase': '🟢',
+  'Git': '🔀', 'GitHub': '🐙', 'VS Code': '📝', 'Android Studio': '📱', 'Postman': '📮', 'Cloudinary': '☁️',
+  'DSA': '🧠', 'OOP': '🏗️', 'Computer Networks': '🌐', 'Operating Systems': '💻'
 };
 
 const SKILL_CATEGORIES = [
-  { key: 'all', label: 'All Skills', icon: null },
-  { key: 'languages', label: 'Languages', icon: null },
-  { key: 'web', label: 'Web & Frameworks', icon: null },
-  { key: 'tools', label: 'Tools & DevOps', icon: null },
-  { key: 'db', label: 'Databases', icon: null },
+  { key: 'all', label: 'All Skills' },
+  { key: 'languages', label: 'Languages' },
+  { key: 'web', label: 'Web & APIs' },
+  { key: 'db', label: 'Databases' },
+  { key: 'tools', label: 'Tools & DevOps' },
+  { key: 'core', label: 'Core CS' },
 ];
 
 const InteractiveSkillsGrid = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [hoveredSkill, setHoveredSkill] = useState(null);
 
   const filteredSkills = activeCategory === 'all'
     ? SKILLS
@@ -301,28 +390,35 @@ const InteractiveSkillsGrid = () => {
         ))}
       </motion.div>
 
-      {/* Skills Grid */}
-      <motion.div className="skills-cards-grid" layout>
+      {/* Skills Grid with Liquid Morph Chips */}
+      <motion.div className="skills-cards-grid" layout style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '16px' }}>
         <AnimatePresence mode="popLayout">
           {filteredSkills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              className={`skill-card ${hoveredSkill === skill.name ? 'hovered' : ''}`}
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              className="liquid-skill-chip"
+              initial={{ opacity: 0, scale: 0.85, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: -20 }}
-              transition={{ duration: 0.3, delay: index * 0.04 }}
-              whileHover={{ scale: 1.08, y: -6 }}
-              onHoverStart={() => setHoveredSkill(skill.name)}
-              onHoverEnd={() => setHoveredSkill(null)}
-              style={{ '--skill-color': skill.color }}
+              exit={{ opacity: 0, scale: 0.85, y: -20 }}
+              transition={{ duration: 0.3, delay: index * 0.03 }}
+              whileHover={{ scale: 1.06, y: -4 }}
             >
-              <div className="skill-card-glow" />
-              <div className="skill-card-icon">
-                {SKILL_ICONS[skill.name] || '💡'}
+              <div style={{ width: '28px', height: '28px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {SKILL_LOGOS[skill.name] ? (
+                  <img src={SKILL_LOGOS[skill.name]} alt={skill.name} style={{ width: '26px', height: '26px', objectFit: 'contain' }} />
+                ) : (
+                  <Code2 size={24} style={{ color: skill.color }} />
+                )}
               </div>
-              <div className="skill-card-name">{skill.name}</div>
-              <div className="skill-card-dot" style={{ background: skill.color }} />
+              <div style={{ flex: 1, overflow: 'hidden' }}>
+                <div style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--text-primary)', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                  {skill.name}
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'capitalize' }}>
+                  {skill.category}
+                </div>
+              </div>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: skill.color, flexShrink: 0 }} />
             </motion.div>
           ))}
         </AnimatePresence>
@@ -611,7 +707,7 @@ function App() {
       {/* Navbar with active layout animations */}
       <nav className="navbar">
         <div className="container navbar-inner">
-          <Link to="home" smooth={true} className="navbar-logo">AKM</Link>
+          <Link to="home" smooth={true} className="navbar-logo">AKAYM</Link>
           
           <ul className="navbar-links">
             {NAV_LINKS.map(link => (
@@ -665,22 +761,23 @@ function App() {
       </nav>
 
       {/* 5. Typing Text Animation & 8. Image Parallax in Hero */}
+      {/* Hero Section with Neomorphism Fluid Organic Profile Frame */}
       <section id="home" className="hero">
         <div className="bg-blob bg-blob-1"></div>
         <div className="bg-blob bg-blob-2"></div>
         
         <div className="container">
-          <div className="hero-content-wrapper">
-            <motion.div className="hero-content" initial="hidden" animate="visible" variants={staggerContainer}>
-              <motion.div variants={slideLeft} className="hero-badge">
-                <div className="dot"></div> Available for Opportunities
+          <div className="hero-content-wrapper" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '48px', flexWrap: 'wrap' }}>
+            <motion.div className="hero-content" style={{ textAlign: 'left', alignItems: 'flex-start', flex: '1 1 500px', maxWidth: '650px' }} initial="hidden" animate="visible" variants={staggerContainer}>
+              <motion.div variants={slideLeft} className="neo-pill-widget" style={{ marginBottom: '24px' }}>
+                <div className="dot" style={{ width: '10px', height: '10px', background: 'var(--accent-green)', borderRadius: '50%' }}></div> Available for Opportunities
               </motion.div>
               
               <motion.h1 variants={slideLeft} className="hero-name">
                 Hi, I'm <span className="hero-name-gradient">Aditya Kumar Mishra</span>
               </motion.h1>
               
-              <motion.h2 variants={slideLeft} className="hero-title">
+              <motion.h2 variants={slideLeft} className="hero-title" style={{ textAlign: 'left' }}>
                 &gt; <span className="hero-name-gradient">
                   <TypewriterText sequence={[
                     'Full Stack Developer',
@@ -690,41 +787,65 @@ function App() {
                 </span>
               </motion.h2>
               
-              <motion.p variants={slideLeft} className="hero-description">
-                &gt; Flutter App Dev_<br/>
-                I specialize in building scalable web applications and robust mobile experiences. 
-                Proficient in React, Node.js, and Flutter, I engineer solutions that are both beautiful and performant.
+              <motion.p variants={slideLeft} className="hero-description" style={{ textAlign: 'left' }}>
+                &gt; Flutter & MERN Stack Dev_<br/>
+                Building scalable web applications and robust mobile experiences with a touch of art and engineering.
               </motion.p>
               
-              {/* 4. Button Hover Animation */}
-              <motion.div variants={slideLeft} className="hero-actions">
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <motion.div variants={slideLeft} className="hero-actions" style={{ justifyContent: 'flex-start' }}>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link to="contact" smooth={true} offset={-70} duration={500} className="btn btn-primary">
                     Contact Me <ChevronRight size={18} />
                   </Link>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <a href="https://drive.google.com/file/d/1DlVc30ojFuMN7Hx2fjnZtMZhZfUY-51w/view?usp=sharing" className="btn btn-outline" target="_blank" rel="noreferrer">
                     <Download size={18} /> Download Resume
                   </a>
                 </motion.div>
               </motion.div>
               
-              {/* 12. Floating Social Icons */}
-              <motion.div variants={slideLeft} className="hero-stats">
+              <motion.div variants={slideLeft} className="hero-stats" style={{ justifyContent: 'flex-start' }}>
                 {[ 
-                  { icon: <Github size={24}/>, link: "https://github.com/Aditya1787", color: "var(--text-primary)" }, 
-                  { icon: <Linkedin size={24}/>, link: "https://www.linkedin.com/in/adityakumishra/", color: "#0a66c2" }, 
-                  { icon: <Mail size={24}/>, link: "mailto:adityam8787@gmail.com", color: "#ef4444" }
+                  { icon: <Github size={22}/>, link: "https://github.com/Aditya1787", color: "var(--text-primary)" }, 
+                  { icon: <Linkedin size={22}/>, link: "https://www.linkedin.com/in/adityakumishra/", color: "#0a66c2" }, 
+                  { icon: <Mail size={22}/>, link: "mailto:adityam8787@gmail.com", color: "#ef4444" }
                 ].map((item, i) => (
                   <motion.a 
-                    key={i} href={item.link} target="_blank" rel="noreferrer" className="social-toggle"
-                    whileHover={{ scale: 1.2, rotate: 10, boxShadow: `0 0 15px ${item.color}`, color: item.color, borderColor: item.color }}
+                    key={i} href={item.link} target="_blank" rel="noreferrer" className="neo-dock-icon"
+                    whileHover={{ scale: 1.15, y: -4 }} whileTap={{ scale: 0.95 }}
                   >
                     {item.icon}
                   </motion.a>
                 ))}
               </motion.div>
+            </motion.div>
+
+            {/* Right Column: Paper Craft Sticker Profile Cutout Frame */}
+            <motion.div 
+              className="hero-image-col"
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ position: 'relative', flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+            >
+              {/* Floating Weather/Status Pill Widget above profile frame */}
+              <motion.div 
+                className="neo-pill-widget"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                style={{ position: 'absolute', top: '-20px', right: '-10px', zIndex: 10, background: '#ffffff', fontSize: '13px', boxShadow: '0 8px 20px rgba(0,0,0,0.1)' }}
+              >
+                <span>☀️ 28°</span>
+                <span style={{ color: 'var(--accent-green)', fontWeight: '700' }}>Active Engineer</span>
+              </motion.div>
+
+              {/* Paper Craft Sticker Cutout Container */}
+              <div className="paper-cut-frame">
+                <img src={paperCraftAvatar} alt="Aditya Kumar Mishra" className="paper-cut-img" />
+                <div className="neo-star-badge" title="Developer Craft Avatar" style={{ background: '#ffffff' }}>⭐</div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -747,36 +868,88 @@ function App() {
               </div>
 
               <motion.div className="about-text" variants={slideLeft} style={{ padding: 0, border: 'none', background: 'transparent', boxShadow: 'none' }}>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.8', marginBottom: '16px' }}>I am Aditya Kumar Mishra, an aspiring software engineer pursuing B.Tech in Computer Science and Engineering at Lovely Professional University.</p>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.8', marginBottom: '24px' }}>My passion lies in crafting efficient, scalable, and user-friendly digital solutions. I have cultivated a strong foundation in both <strong>Full Stack Web Development</strong> (MERN stack) and <strong>Mobile App Development</strong> (Flutter & Dart).</p>
+                <p style={{ color: 'var(--text-primary)', fontSize: '1.15rem', fontWeight: '600', lineHeight: '1.8', marginBottom: '16px' }}>
+                  I am <span style={{ color: 'var(--accent-primary)', fontWeight: '800' }}>Aditya Kumar Mishra</span>, a passionate Full Stack & Mobile Systems Engineer pursuing B.Tech in Computer Science & Engineering at Lovely Professional University.
+                </p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.02rem', lineHeight: '1.8', marginBottom: '24px' }}>
+                  I architect end-to-end digital solutions—ranging from **multi-agent AI equity terminals** on LangGraph to **O(N log N) algorithmic debt simplification ledgers** and **developer telemetry analytics consoles**.
+                </p>
                 
-                <div className="about-highlights">
-                  {['💡 Problem-Solving', '🚀 Quick Learner', '📊 Project Mgmt.', '🧠 Analytical Thinking'].map((t, i) => (
-                    <div key={i} className="about-highlight-item" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>{t}</div>
+                <div className="about-highlights" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px', marginTop: '24px' }}>
+                  {[
+                    { title: '⚡ Algorithmic Thinking', desc: '600+ DSA & 1481 LeetCode' },
+                    { title: '🤖 Multi-Agent AI', desc: 'LangGraph & Gemini APIs' },
+                    { title: '🚀 Full Stack & APIs', desc: 'MERN & Next.js Systems' },
+                    { title: '📱 Mobile Systems', desc: 'Flutter & Supabase Auth' }
+                  ].map((item, i) => (
+                    <motion.div 
+                      key={i} 
+                      className="liquid-skill-chip" 
+                      style={{ flexDirection: 'column', alignItems: 'flex-start', padding: '14px 18px', gap: '4px' }}
+                      whileHover={{ scale: 1.05, y: -4 }}
+                    >
+                      <div style={{ fontWeight: '800', fontSize: '0.92rem', color: 'var(--text-primary)' }}>{item.title}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--accent-primary)', fontWeight: '600' }}>{item.desc}</div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
 
-              <motion.div className="about-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', flexDirection: 'unset' }} variants={slideUp}>
+              <motion.div className="about-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }} variants={slideUp}>
                 {[
-                  { title: 'Web Development', desc: 'Building dynamic and state-of-the-art web applications using React.js, Tailwind CSS, Node.js.' },
-                  { title: 'App Development', desc: 'Engineering cross-platform mobile experiences with Flutter and Supabase.' },
-                  { title: 'Core CS Fundamentals', desc: 'Deep understanding of Data Structures & Algorithms and Database Management Systems.' }
+                  { title: 'Full Stack Engineering', desc: 'Building high-performance web systems using React.js, Next.js, Node.js, Express, MongoDB, and RESTful APIs.' },
+                  { title: 'Multi-Agent AI Systems', desc: 'Orchestrating specialized LLM agents with LangChain, LangGraph, and generative diagnostic engines.' },
+                  { title: 'Cross-Platform Mobile', desc: 'Engineering fast mobile applications with Flutter, Supabase Realtime, and Cloudinary CDN.' }
                 ].map((card, i) => (
-                  <motion.div key={i} className="glass-card about-card" style={{ padding: '20px', borderLeft: '3px solid var(--accent-primary)' }}>
-                    <h4 style={{ marginBottom: '8px', color: 'var(--accent-primary)' }}>{card.title}</h4>
-                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{card.desc}</p>
+                  <motion.div key={i} className="liquid-card" style={{ padding: '24px', borderLeft: '4px solid var(--accent-primary)' }} whileHover={{ y: -6, scale: 1.02 }}>
+                    <h4 style={{ marginBottom: '8px', color: 'var(--accent-primary)', fontSize: '1.05rem', fontWeight: '700' }}>{card.title}</h4>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>{card.desc}</p>
                   </motion.div>
                 ))}
               </motion.div>
             </motion.div>
 
-            {/* Right Column: Profile Image */}
-            <motion.div className="about-image-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideRight} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <div style={{ width: '100%', maxWidth: '400px', aspectRatio: '4/5', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-card)', position: 'relative' }}>
-                <img src={profilePic} alt="Aditya Kumar Mishra" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--bg-primary) 0%, transparent 40%)', opacity: 0.6 }} />
+            {/* Right Column: Neomorphic Widget Stack & Van Gogh Art Card */}
+            <motion.div className="about-image-wrapper" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideRight} style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%', maxWidth: '440px', margin: '0 auto' }}>
+              
+              {/* Focus Mode Neomorphic Widget */}
+              <div className="neo-widget-box" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '1.2rem', color: 'var(--accent-gold)' }}>⭐</span>
+                  <div>
+                    <div style={{ fontWeight: '700', fontSize: '0.95rem' }}>Focus Mode</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Do not disturb · Active Coding</div>
+                  </div>
+                </div>
+                <div className="neo-pill-widget" style={{ padding: '6px 14px', background: 'var(--accent-primary)', color: 'white', cursor: 'pointer', fontSize: '12px' }}>
+                  Active ⚡
+                </div>
               </div>
+
+              {/* Coding Energy Circular Widget */}
+              <div className="neo-widget-box" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div style={{ width: '70px', height: '70px', borderRadius: '50%', background: 'var(--bg-primary)', boxShadow: 'var(--neo-in)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ fontWeight: '800', fontSize: '1.1rem', color: 'var(--accent-primary)' }}>88%</span>
+                </div>
+                <div>
+                  <div style={{ fontWeight: '700', fontSize: '1rem', marginBottom: '4px' }}>Full Stack & DSA Battery</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>High problem-solving capacity & continuous learning streak</div>
+                </div>
+              </div>
+
+              {/* Van Gogh Quote Widget */}
+              <div className="van-gogh-quote">
+                <div className="van-gogh-quote-icon">“</div>
+                <div>
+                  <div style={{ fontSize: '0.92rem', lineHeight: '1.5', fontWeight: '500' }}>
+                    I dream of painting and then I paint my dream.
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--accent-gold)', marginTop: '6px', fontWeight: '700' }}>
+                    — Vincent van Gogh
+                  </div>
+                </div>
+              </div>
+
             </motion.div>
           </div>
         </div>
@@ -795,36 +968,61 @@ function App() {
               <InteractiveSkillsGrid />
             </motion.div>
 
-            {/* 6. Skill Progress Bar Animation */}
+            {/* Full Stack Engineering Mastery Dashboard */}
             <motion.div 
-              className="glass-card" style={{ padding: '40px' }}
+              className="liquid-card" style={{ padding: '36px', marginTop: '32px' }}
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
             >
-              <h3 style={{ marginBottom: '24px', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Code2 size={24} style={{ color: 'var(--accent-primary)' }} /> Expertise Overview
-              </h3>
-              <div className="skills-progress-list">
-                {EXPERTISE_LEVELS.map((skill, index) => (
-                  <motion.div key={index} className="progress-item" variants={slideUp}>
-                    <div className="progress-header" style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '500', fontSize: '1.05rem' }}>
-                        <CheckCircle2 size={16} style={{ color: 'var(--accent-primary)' }} />
-                        {skill.name}
-                      </span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
+                <div>
+                  <h3 style={{ fontSize: '1.6rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-primary)' }}>
+                    <Code2 size={26} style={{ color: 'var(--accent-primary)' }} /> Full-Stack Engineering Dashboard
+                  </h3>
+                  <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                    Production system capabilities, architectural proficiencies & algorithmic performance metrics
+                  </div>
+                </div>
 
+                <div className="neo-pill-widget" style={{ padding: '6px 16px', background: 'var(--accent-secondary)', color: '#ffffff', fontWeight: '700', fontSize: '12px' }}>
+                  ⚡ Production Ready Engineer
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+                {EXPERTISE_LEVELS.map((skill, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="neo-inset-box" 
+                    style={{ padding: '20px', borderRadius: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+                    variants={slideUp}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                        <span style={{ fontWeight: '700', fontSize: '0.98rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <CheckCircle2 size={18} style={{ color: 'var(--accent-secondary)', flexShrink: 0 }} />
+                          {skill.name}
+                        </span>
+                        <span style={{ fontWeight: '800', fontSize: '1.1rem', color: 'var(--accent-primary)', flexShrink: 0 }}>
+                          {skill.level}%
+                        </span>
+                      </div>
+
+                      <div className="progress-track" style={{ height: '10px', background: '#cbd5e1', borderRadius: '10px', overflow: 'hidden', marginBottom: '12px' }}>
+                        <motion.div 
+                          className="progress-fill" 
+                          style={{ height: '100%', background: 'var(--gradient-1)', borderRadius: '10px' }}
+                          initial={{ width: 0 }} 
+                          whileInView={{ width: `${skill.level}%` }} 
+                          viewport={{ once: true }} 
+                          transition={{ duration: 1.5, delay: index * 0.1, ease: "easeOut" }} 
+                        />
+                      </div>
                     </div>
-                    <div className="progress-track" style={{ height: '12px', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px', overflow: 'hidden', border: '1px solid var(--border-color)' }}>
-                      {/* Loading Bar filling up on display */}
-                      <motion.div 
-                        className="progress-fill" 
-                        style={{ height: '100%', background: 'var(--gradient-1)', borderRadius: '10px', position: 'relative' }}
-                        initial={{ width: 0 }} 
-                        whileInView={{ width: `${skill.level}%` }} 
-                        viewport={{ once: true }} 
-                        transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }} 
-                      >
-                        <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '30%', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)' }}></div>
-                      </motion.div>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: '600' }}>
+                      <span>Production Capability: Verified</span>
+                      <span>High Efficiency</span>
                     </div>
                   </motion.div>
                 ))}
@@ -834,40 +1032,68 @@ function App() {
         </div>
       </section>
 
-      {/* 9. Section Slide Animation & 3. Project Hover Animation */}
+      {/* Projects Section */}
       <section id="projects" className="section">
         <div className="container">
           <motion.div className="section-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideUp}>
-            <div className="section-badge"><Layout size={16}/> Portfolio</div>
-            <h2 className="section-title">Featured Projects</h2>
+            <div className="section-badge"><Layout size={16}/> CV Projects Portfolio</div>
+            <h2 className="section-title">Featured Engineering Projects</h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: '1rem', lineHeight: 1.7 }}>
+              Production-grade applications featuring algorithmic debt simplification, multi-agent AI pipelines, and telemetry analytics consoles.
+            </p>
           </motion.div>
 
-          <motion.div className="projects-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+          <motion.div className="projects-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '32px' }}>
             {PROJECTS.map((project) => (
               <motion.div 
                 key={project.id} 
                 variants={slideUp} 
-                className="glass-card project-card"
-                whileHover={{ scale: 1.05, y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}
-                transition={{ duration: 0.3 }}
+                className="liquid-card"
+                style={{ padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
               >
-                <div className="project-image-container">
-                  <img src={project.image} alt={project.title} className="project-thumbnail" />
-                  <div className="project-icon-overlay">{project.icon}</div>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                    <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'var(--bg-primary)', boxShadow: 'var(--neo-in-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-primary)' }}>
+                      {project.icon}
+                    </div>
+                    <span className="neo-pill-widget" style={{ fontSize: '11px', padding: '4px 12px', background: 'rgba(37, 99, 235, 0.08)', color: 'var(--accent-primary)', border: '1px solid rgba(37, 99, 235, 0.2)' }}>
+                      {project.badge}
+                    </span>
+                  </div>
+
+                  <h3 style={{ fontSize: '1.3rem', fontWeight: '800', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                    {project.title}
+                  </h3>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--accent-secondary)', fontWeight: '600', marginBottom: '16px' }}>
+                    {project.subtitle}
+                  </div>
+
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
+                    {project.features.map((feat, idx) => (
+                      <li key={idx} style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: '1.6', display: 'flex', gap: '10px' }}>
+                        <span style={{ color: 'var(--accent-primary)', fontWeight: '700', flexShrink: 0 }}>▸</span>
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="project-content">
-                  <div className="project-header">
-                    <span className="project-date">{project.duration}</span>
+
+                <div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '24px' }}>
+                    {project.tech.map((t, i) => (
+                      <span key={i} className="tech-badge" style={{ background: 'rgba(22, 163, 74, 0.08)', color: '#16a34a', border: '1px solid rgba(22, 163, 74, 0.2)', fontSize: '11px', fontWeight: '700' }}>
+                        {t}
+                      </span>
+                    ))}
                   </div>
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-tech-stack">
-                    {project.tech.map((tech, i) => <span key={i} className="tech-badge">{tech}</span>)}
-                  </div>
-                  <div className="project-links">
-                    <motion.a href={project.link} className="btn btn-sm btn-outline" whileHover={{ scale: 1.1 }}>
-                      View Project <ExternalLink size={14} />
-                    </motion.a>
+
+                  <div style={{ display: 'flex', gap: '12px' }}>
+                    <a href={project.demoLink} target="_blank" rel="noreferrer" className="btn btn-sm btn-primary" style={{ flex: 1, textDecoration: 'none' }}>
+                      Live Demo <ExternalLink size={14} />
+                    </a>
+                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="btn btn-sm btn-outline" style={{ flex: 1, textDecoration: 'none' }}>
+                      <Github size={14} /> GitHub Code
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -1072,9 +1298,9 @@ function App() {
         <div className="container">
           <motion.div className="section-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideUp}>
             <div className="section-badge"><Award size={16}/> Verified Credentials</div>
-            <h2 className="section-title">Certificates</h2>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: '520px', margin: '0 auto', fontSize: '1rem', lineHeight: 1.7 }}>
-              Click any certificate to view it in full detail.
+            <h2 className="section-title">Certifications & Credentials</h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '560px', margin: '0 auto', fontSize: '1rem', lineHeight: 1.7 }}>
+              Industry-recognized credentials in Artificial Intelligence, Enterprise Data Platforms, Cloud Systems, and Algorithmic Engineering.
             </p>
           </motion.div>
 
@@ -1084,42 +1310,47 @@ function App() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}
           >
-            {CERTS.map((cert, i) => (
-              <motion.div
+            {CERTS.map((cert) => (
+              <motion.a
                 key={cert.id}
-                className="cert-card"
+                href={cert.link}
+                target="_blank"
+                rel="noreferrer"
+                className="liquid-card"
                 variants={slideUp}
-                whileHover={{ y: -8, scale: 1.03 }}
-                onClick={() => setSelectedCert(cert)}
-                style={{ '--cert-color': cert.color }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                style={{ padding: '28px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none', borderLeft: `4px solid ${cert.color}` }}
               >
-                {/* Top color stripe */}
-                <div className="cert-card-stripe" style={{ background: cert.color }} />
-
-                {/* Preview thumbnail */}
-                <div className="cert-card-thumb">
-                  <img src={cert.image} alt={cert.title} />
-                  <div className="cert-card-overlay">
-                    <div className="cert-card-view-btn">
-                      <ExternalLink size={20} /> View Certificate
-                    </div>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+                    <span className="neo-pill-widget" style={{ fontSize: '11px', padding: '4px 12px', background: `${cert.color}15`, color: cert.color, border: `1px solid ${cert.color}35`, fontWeight: '700' }}>
+                      {cert.tag}
+                    </span>
+                    <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontFamily: "'Fira Code', monospace", fontWeight: '600' }}>
+                      {cert.period}
+                    </span>
                   </div>
+
+                  <h3 style={{ fontSize: '1.18rem', fontWeight: '800', marginBottom: '8px', color: 'var(--text-primary)', lineHeight: '1.4' }}>
+                    {cert.title}
+                  </h3>
+
+                  <div style={{ fontSize: '0.9rem', color: 'var(--accent-primary)', fontWeight: '700', marginBottom: '12px' }}>
+                    {cert.issuer}
+                  </div>
+
+                  <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '20px' }}>
+                    {cert.hours}
+                  </p>
                 </div>
 
-                {/* Info */}
-                <div className="cert-card-body">
-                  <span className="cert-card-tag" style={{ background: `${cert.color}22`, color: cert.color, border: `1px solid ${cert.color}44` }}>
-                    {cert.tag}
-                  </span>
-                  <h3 className="cert-card-title">{cert.title}</h3>
-                  <div className="cert-card-meta">
-                    <span className="cert-card-issuer">{cert.issuer}</span>
-                    <span className="cert-card-period">{cert.period}</span>
-                  </div>
-                  <div className="cert-card-hours" style={{ color: cert.color }}>{cert.hours}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: cert.color, fontWeight: '700' }}>
+                  <span>Verify Credential</span>
+                  <ExternalLink size={14} />
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </motion.div>
         </div>
