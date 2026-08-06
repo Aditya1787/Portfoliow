@@ -12,7 +12,6 @@ import { Link } from 'react-scroll';
 // New Animation Dependencies
 import { Particles, initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import profilePic from './assets/profile_pic.jpeg';
 import paperCraftAvatar from './assets/paper_craft_avatar.png';
 
 // --- DATA ---
